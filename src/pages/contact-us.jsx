@@ -47,21 +47,34 @@ export function Contact() {
                   Mail,
                   "Support email",
                   COMPANY.supportEmail || "Awaiting verified support email",
+                  COMPANY.supportEmail ? `mailto:${COMPANY.supportEmail}` : null,
                 ],
                 [
                   Phone,
                   "Support phone",
                   COMPANY.supportPhone || "Awaiting verified phone number",
+                  COMPANY.supportPhone
+                    ? `tel:${COMPANY.supportPhone.replace(/[^\d+]/g, "")}`
+                    : null,
                 ],
-                [MapPin, "Registered office", COMPANY.registeredAddress],
-              ].map(([Icon, t, d]) => (
+                [MapPin, "Registered office", COMPANY.registeredAddress, null],
+              ].map(([Icon, t, d, href]) => (
                 <div key={t} className="info-card flex items-start gap-4">
                   <Icon size={24} className="text-[#ae8b45] shrink-0" />
                   <div>
                     <div className="font-bold text-forest">{t}</div>
-                    <p className="text-sm leading-7 text-[#6c7b6f] mt-1 break-words">
-                      {d}
-                    </p>
+                    {href ? (
+                      <a
+                        href={href}
+                        className="text-sm leading-7 text-[#6c7b6f] hover:text-[#ae8b45] transition-colors mt-1 block break-words"
+                      >
+                        {d}
+                      </a>
+                    ) : (
+                      <p className="text-sm leading-7 text-[#6c7b6f] mt-1 break-words">
+                        {d}
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
@@ -73,9 +86,9 @@ export function Contact() {
               How can we help?
             </h2>
             <p className="notice-line mt-6 mb-7">
-              The website contact form is a ready-to-connect UI. Sending is
-              disabled until a verified support email or backend is configured;
-              no message is currently submitted or stored.
+              {valid
+                ? `Submit your enquiry below to compose and send an email directly to our official support team at ${COMPANY.supportEmail}.`
+                : "The website contact form is a ready-to-connect UI. Sending is disabled until a verified support email or backend is configured."}
             </p>
             <form onSubmit={submit} className="grid gap-5">
               <div className="grid sm:grid-cols-2 gap-5">

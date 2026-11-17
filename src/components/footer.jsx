@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "../site-router";
+import { COMPANY } from "./page-layout";
 import tiazIcon from "../assets/tiaz-icon.png";
 
 function Footer() {
@@ -39,9 +40,22 @@ function Footer() {
             <div className="flex flex-col gap-4 text-sm text-[#aabdb1]">
               <Link to="/terms-condition">Terms & Conditions</Link>
               <Link to="/privacy-policy">Privacy Policy</Link>
-              <span className="text-xs text-[#a3b3a8]">
-                Official contact details to be confirmed
-              </span>
+              {COMPANY.supportEmail && (
+                <a
+                  href={`mailto:${COMPANY.supportEmail}`}
+                  className="hover:text-white transition-colors text-xs flex items-center gap-1.5"
+                >
+                  <span>✉</span> {COMPANY.supportEmail}
+                </a>
+              )}
+              {COMPANY.supportPhone && (
+                <a
+                  href={`tel:${COMPANY.supportPhone.replace(/[^\d+]/g, "")}`}
+                  className="hover:text-white transition-colors text-xs flex items-center gap-1.5"
+                >
+                  <span>📞</span> {COMPANY.supportPhone}
+                </a>
+              )}
             </div>
           </div>
         </div>

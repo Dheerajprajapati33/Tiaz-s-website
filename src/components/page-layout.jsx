@@ -7,8 +7,8 @@ const legalNotice =
 export const COMPANY = {
   legalName: "[REGISTERED LEGAL ENTITY NAME — TO BE CONFIRMED]",
   registeredAddress: "[REGISTERED BUSINESS ADDRESS — TO BE CONFIRMED]",
-  supportEmail: "",
-  supportPhone: "",
+  supportEmail: "Info@tiaz.com",
+  supportPhone: "+91 93121 25125",
   grievanceContact: "[GRIEVANCE OFFICER NAME & CONTACT — TO BE CONFIRMED]",
   effectiveDate: "[EFFECTIVE DATE — SET BEFORE PUBLICATION]",
   appStoreUrl: "",
